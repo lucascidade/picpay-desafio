@@ -10,7 +10,7 @@ namespace picpay_desafio.Models
             string document,
             decimal wallet,
             UserType type,
-            Guid Id = default) 
+            Guid id = default) 
         {
             FirstName = firstName;
             LastName = lastName;
@@ -18,6 +18,7 @@ namespace picpay_desafio.Models
             Wallet = wallet;
             Type = type;
             Active = true;
+            Id = id;
         }
 
         public Guid Id { get;  set; }

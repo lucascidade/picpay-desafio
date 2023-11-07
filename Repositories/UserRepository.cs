@@ -29,7 +29,8 @@ public class UserRepository : IUserRepository
 
     public Guid Create(User user)
     {
-        throw new NotImplementedException();
+        _context.Add(user);
+        return user.Id;
     }
 
     public Task DeleteUser(Guid id)

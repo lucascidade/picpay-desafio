@@ -2,7 +2,7 @@
 using picpay_desafio.DTO;
 using picpay_desafio.Interface.Repositories;
 using picpay_desafio.Interface.Services;
-
+using picpay_desafio.Models;
 
 namespace picpay_desafio.Services;
 
@@ -10,10 +10,12 @@ public class UserService : IUserService
 {
     private readonly IUserRepository _repository;
     private readonly IMapper _mapper;
-    public UserService(IUserRepository repository, IMapper mapper)
+    private readonly IUnitOfWork _unitOfWork;
+    public UserService(IUserRepository repository, IMapper mapper, IUnitOfWork unitOfWork)
     {
         _repository = repository;
         _mapper = mapper;
+        _unitOfWork = unitOfWork;
 
     }
     public async Task<List<UserDTO>> GetAll()
@@ -27,9 +29,12 @@ public class UserService : IUserService
         throw new NotImplementedException();
     }
 
-    public Guid Create(UserCreateDTO userCreateDTO)
+    public async Task<Guid> Create(UserCreateDTO userCreateDTO)
     {
-        throw new NotImplementedException();
+        //transformando o User em USERDTO
+        var user = _repository.Create(_mapper.Map<User>(userCreateDTO));
+         await _unitOfWork.Save();
+        return user;
     }
 
     public Task DeleteUser(Guid id)
