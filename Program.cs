@@ -26,6 +26,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<PicpayDataContext>(options =>
 options.UseSqlite("Data Source=./Data/picpay_desafio.db"));
+
+builder.Services.AddAutoMapper(typeof(Program));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

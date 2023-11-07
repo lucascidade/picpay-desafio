@@ -1,42 +1,44 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using picpay_desafio.Data;
+using picpay_desafio.DTO;
 using picpay_desafio.Interface.Repositories;
 using picpay_desafio.Models;
 
-namespace picpay_desafio.Repositories
+namespace picpay_desafio.Repositories;
+
+public class UserRepository : IUserRepository
 {
-    public class UserRepository : IUserRepository
+    private readonly PicpayDataContext _context;
+
+    public UserRepository(PicpayDataContext context) {
+        _context = context;
+
+    }
+
+    public Guid Create(UserCreateDTO userCreateDTO)
     {
-        private readonly PicpayDataContext _context;
-        public UserRepository(PicpayDataContext context) {
-            _context = context;
-        }
+        throw new NotImplementedException();
+    }
 
-        public Task<List<User>> GetAll()
-        {
-            return _context.Users.Where(u => u.Active).ToListAsync();
-        }
+    public Task DeleteUser(Guid id)
+    {
+        throw new NotImplementedException();
+    }
 
-        public Task<User> GetById()
-        {
-            throw new NotImplementedException();
-        }
+    public Task<List<UserDTO>> GetAll()
+    {
+        throw new NotImplementedException();
+    }
 
-        public Guid Create()
-        {
-            throw new NotImplementedException();
-        }
+    public Task<UserDTO> GetById()
+    {
+        throw new NotImplementedException();
+    }
 
-        public void UpdateUser()
-        {
-            throw new NotImplementedException();
-        }
-        public Task DeleteUser(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-
+    public void UpdateUser(UserUpdateDTO userUpdateDTO)
+    {
+        throw new NotImplementedException();
     }
 }
