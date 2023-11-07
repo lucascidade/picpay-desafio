@@ -22,9 +22,9 @@ public class UserRepository : IUserRepository
         return _context.Users.Where(u => u.Active).ToListAsync();
     }
 
-    public Task<User> GetById()
+    public async Task<User?> GetById(Guid id)
     {
-        throw new NotImplementedException();
+        return await _context.Users.FindAsync(id);
     }
 
     public Guid Create(User user)

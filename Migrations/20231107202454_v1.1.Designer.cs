@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using picpay_desafio.Data;
 
@@ -10,9 +11,11 @@ using picpay_desafio.Data;
 namespace picpay_desafio.Migrations
 {
     [DbContext(typeof(PicpayDataContext))]
-    partial class PicpayDataContextModelSnapshot : ModelSnapshot
+    [Migration("20231107202454_v1.1")]
+    partial class v11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");

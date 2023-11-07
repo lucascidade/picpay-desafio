@@ -10,7 +10,7 @@ namespace picpay_desafio.Controllers;
 public class UserController : ControllerBase
 {
     private readonly IUserService _service;
-    
+
 
     public UserController(IUserService service)
     {
@@ -26,5 +26,12 @@ public class UserController : ControllerBase
     {
         return await _service.Create(userCreateDTO);
     }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<UserDTO>> GetById(Guid id)
+    {
+        return Ok(await _service.GetById(id));
+    }
+
 
 }

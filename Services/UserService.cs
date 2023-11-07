@@ -25,9 +25,15 @@ public class UserService : IUserService
         return user.Select(u => _mapper.Map<UserDTO>(u)).ToList();
     }
 
-    public Task<UserDTO> GetById()
+    public async Task<UserDTO> GetById(Guid id)
     {
-        throw new NotImplementedException();
+        var dbuser = await _repository.GetById(id);
+        if (dbuser == null)
+        {
+            throw new Exception("Usuário não encontrado!");
+        }
+
+        return _mapper.Map<UserDTO>(dbuser);
     }
 
     public async Task<Guid> Create(UserCreateDTO userCreateDTO)
