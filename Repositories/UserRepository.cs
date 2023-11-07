@@ -1,26 +1,29 @@
-﻿using picpay_desafio.Interface.Repositories;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
+using picpay_desafio.Data;
+using picpay_desafio.Interface.Repositories;
 using picpay_desafio.Models;
 
 namespace picpay_desafio.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public Guid Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteUser(Guid id)
-        {
-            throw new NotImplementedException();
+        private readonly PicpayDataContext _context;
+        public UserRepository(PicpayDataContext context) {
+            _context = context;
         }
 
         public Task<List<User>> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Users.Where(u => u.Active).ToListAsync();
         }
 
         public Task<User> GetById()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Guid Create()
         {
             throw new NotImplementedException();
         }
@@ -29,5 +32,11 @@ namespace picpay_desafio.Repositories
         {
             throw new NotImplementedException();
         }
+        public Task DeleteUser(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 }
