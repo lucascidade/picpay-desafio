@@ -3,6 +3,7 @@ using picpay_desafio.DTO;
 using picpay_desafio.Interface.Repositories;
 using picpay_desafio.Interface.Services;
 using picpay_desafio.Models;
+using System.Data;
 
 namespace picpay_desafio.Services;
 
@@ -32,9 +33,14 @@ public class UserService : IUserService
     public async Task<Guid> Create(UserCreateDTO userCreateDTO)
     {
         //transformando o User em USERDTO
-        var user = _repository.Create(_mapper.Map<User>(userCreateDTO));
-         await _unitOfWork.Save();
-        return user;
+        var user =  _mapper.Map<User>(userCreateDTO);
+        if(await _repository.Exists(user))
+        {
+            throw new Exception("Não foi possível realizar o cadastro, email ou CPF/CNPJ já informados por outro usuário!");
+        }
+        var newUser = _repository.Create(user);
+        await _unitOfWork.Save();
+        return newUser;
     }
 
     public Task DeleteUser(Guid id)

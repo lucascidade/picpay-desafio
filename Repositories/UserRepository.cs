@@ -38,10 +38,14 @@ public class UserRepository : IUserRepository
         throw new NotImplementedException();
     }
 
-
-
     public void UpdateUser(User user)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<bool> Exists(User user)
+    {
+        var dbuser =  _context.Users.FirstOrDefault(us => us.Document == user.Document || us.Email == user.Email);
+        return dbuser != null;
     }
 }

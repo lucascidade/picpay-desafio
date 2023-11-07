@@ -1,4 +1,5 @@
 ﻿using picpay_desafio.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace picpay_desafio.Models
 {
@@ -7,6 +8,7 @@ namespace picpay_desafio.Models
         public User (
             string firstName,
             string lastName,
+            string email,
             string document,
             decimal wallet,
             UserType type,
@@ -14,6 +16,7 @@ namespace picpay_desafio.Models
         {
             FirstName = firstName;
             LastName = lastName;
+            Email = email;
             Document = document;
             Wallet = wallet;
             Type = type;
@@ -24,6 +27,10 @@ namespace picpay_desafio.Models
         public Guid Id { get;  set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; private set; }
         public decimal Wallet {  get; private set; }
         public string Document { get; private set; }
         public UserType Type { get; private set; }
