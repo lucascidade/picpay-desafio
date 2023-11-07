@@ -17,7 +17,17 @@ public class UserRepository : IUserRepository
 
     }
 
-    public Guid Create(UserCreateDTO userCreateDTO)
+    public Task<List<User>> GetAll()
+    {
+        return _context.Users.Where(u => u.Active).ToListAsync();
+    }
+
+    public Task<User> GetById()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Guid Create(User user)
     {
         throw new NotImplementedException();
     }
@@ -27,17 +37,9 @@ public class UserRepository : IUserRepository
         throw new NotImplementedException();
     }
 
-    public Task<List<UserDTO>> GetAll()
-    {
-        throw new NotImplementedException();
-    }
 
-    public Task<UserDTO> GetById()
-    {
-        throw new NotImplementedException();
-    }
 
-    public void UpdateUser(UserUpdateDTO userUpdateDTO)
+    public void UpdateUser(User user)
     {
         throw new NotImplementedException();
     }

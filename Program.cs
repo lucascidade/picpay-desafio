@@ -5,7 +5,7 @@ using picpay_desafio.Interface.Repositories;
 using picpay_desafio.Interface.Services;
 using picpay_desafio.Repositories;
 using picpay_desafio.Services;
-
+using AutoMapper;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -25,7 +25,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<PicpayDataContext>(options =>
-options.UseSqlite("Data Source=./Data/picpay_desafio.db"));
+options.UseSqlite("Data Source=./Database/picpay_desafio.db"));
 
 builder.Services.AddAutoMapper(typeof(Program));
 
