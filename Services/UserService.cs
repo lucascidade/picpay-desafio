@@ -49,9 +49,11 @@ public class UserService : IUserService
         return newUser;
     }
 
-    public Task DeleteUser(Guid id)
+    public async Task DeleteUser(Guid id)
     {
-        throw new NotImplementedException();
+        var dbUser = await _repository.GetById(id) ?? throw new Exception("Usuário não encontrado!");
+        _repository.DeleteUser(dbUser);
+        await _unitOfWork.Save();
     }
 
     public void UpdateUser(UserUpdateDTO userUpdateDTO)

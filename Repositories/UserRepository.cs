@@ -19,7 +19,7 @@ public class UserRepository : IUserRepository
 
     public Task<List<User>> GetAll()
     {
-        return _context.Users.Where(u => u.Active).ToListAsync();
+        return _context.Users.Where(u => u.Active == true).ToListAsync();
     }
 
     public async Task<User?> GetById(Guid id)
@@ -33,9 +33,11 @@ public class UserRepository : IUserRepository
         return user.Id;
     }
 
-    public Task DeleteUser(Guid id)
+    public void DeleteUser(User user)
     {
-        throw new NotImplementedException();
+        user.DisableUser();
+        _context.Users.Update(user);
+  
     }
 
     public void UpdateUser(User user)
@@ -48,4 +50,5 @@ public class UserRepository : IUserRepository
         var dbuser =  _context.Users.FirstOrDefault(us => us.Document == user.Document || us.Email == user.Email);
         return dbuser != null;
     }
+
 }

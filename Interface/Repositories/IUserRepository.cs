@@ -9,7 +9,7 @@ namespace picpay_desafio.Interface.Repositories
         public Task<User?> GetById(Guid id);
         public void UpdateUser(User user);
         public Guid Create(User user);
-        public Task DeleteUser(Guid id);
+        public void DeleteUser(User user);
         public Task<bool> Exists(User user);
 
     }
