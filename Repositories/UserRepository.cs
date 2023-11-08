@@ -28,9 +28,9 @@ public class UserRepository : IUserRepository
         return await _context.Users.FindAsync(id);
     }
 
-    public Guid Create(User user)
+    public async Task <Guid> Create(User user)
     {
-        _context.Add(user);
+        await _context.AddAsync(user);
         return user.Id;
     }
 
@@ -48,7 +48,7 @@ public class UserRepository : IUserRepository
 
     public async Task<bool> Exists(User user)
     {
-        var dbuser = _context.Users.FirstOrDefault(us => us.Document == user.Document || us.Email == user.Email);
+        var dbuser = await _context.Users.FirstOrDefaultAsync(us => us.Document == user.Document || us.Email == user.Email);
         return dbuser != null;
     }
 }

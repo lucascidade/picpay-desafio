@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "thKUAa3Hdx5GnjdEb1qEnL+9CyAe/sjBNRYW0L2mhkwvYdcKEv31rX3nKFfQp+awExeW7IcR7Zew1z5/2QzERw==",
+  "dgSpecHash": "nvDMAu4aMaxDERjcDKP9xa+f07YXNehmR0B/8zQmqMtu7sDAzlHe0+xitnQmBqIquyPEpOjZXm6tpAyp9RdBzA==",
   "success": true,
-  "projectFilePath": "C:\\dev\\picpay-desafio\\picpay-desafio.csproj",
+  "projectFilePath": "C:\\devlucascidade\\picpay-desafio\\picpay-desafio.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lucascidade\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\lucascidade\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

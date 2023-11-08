@@ -8,5 +8,6 @@ namespace picpay_desafio.Data
         public PicpayDataContext(DbContextOptions<PicpayDataContext> options) 
             :base(options){ }
         public DbSet<User> Users { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
     }
 }

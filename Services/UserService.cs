@@ -39,7 +39,7 @@ public class UserService : IUserService
         {
             throw new Exception("Não foi possível realizar o cadastro, email ou CPF/CNPJ já informados por outro usuário!");
         }
-        var newUser = _repository.Create(user);
+        var newUser = await _repository.Create(user);
         await _unitOfWork.Save();
         return newUser;
     }

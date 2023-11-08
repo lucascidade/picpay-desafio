@@ -23,6 +23,9 @@ builder.Services.AddScoped<IUserService, UserService>();
 //unit of work
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+//transaction
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
