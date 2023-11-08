@@ -33,6 +33,13 @@ public class UserController : ControllerBase
         return Ok(await _service.GetById(id));
     }
 
+
+    [HttpPut("{id}")]
+    public async Task Update(Guid id, UserUpdateDTO updateDTO)
+    {
+        await _service.UpdateUser(id, updateDTO);
+    }
+
     [HttpDelete("{id}")]
     public async Task Delete(Guid id)
     {

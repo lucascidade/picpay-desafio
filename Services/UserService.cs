@@ -27,12 +27,7 @@ public class UserService : IUserService
 
     public async Task<UserDTO> GetById(Guid id)
     {
-        var dbuser = await _repository.GetById(id);
-        if (dbuser == null)
-        {
-            throw new Exception("Usuário não encontrado!");
-        }
-
+        var dbuser = await  _getById(id);
         return _mapper.Map<UserDTO>(dbuser);
     }
 
@@ -51,13 +46,21 @@ public class UserService : IUserService
 
     public async Task DeleteUser(Guid id)
     {
-        var dbUser = await _repository.GetById(id) ?? throw new Exception("Usuário não encontrado!");
+        var dbUser = await _getById(id);
         _repository.DeleteUser(dbUser);
         await _unitOfWork.Save();
     }
 
-    public void UpdateUser(UserUpdateDTO userUpdateDTO)
+    public async Task UpdateUser(Guid id, UserUpdateDTO userUpdateDTO)
     {
-        throw new NotImplementedException();
+        var dbUser =await _getById(id);
+        _mapper.Map(userUpdateDTO, dbUser);
+        _repository.UpdateUser(dbUser);
+        await _unitOfWork.Save();
     }
+
+    private async Task<User> _getById(Guid id) => await _repository.GetById(id) ?? 
+        throw new Exception("Usuário não encontrado!");
+
+
 }

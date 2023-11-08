@@ -10,6 +10,7 @@ namespace picpay_desafio.Mapper
 
             CreateMap<User, UserDTO>();
             CreateMap<UserCreateDTO, User>();
+            CreateMap<UserUpdateDTO, User>();
         }
     }
 }

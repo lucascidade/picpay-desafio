@@ -7,7 +7,7 @@ namespace picpay_desafio.Interface.Services
     {
         public Task<List<UserDTO>> GetAll();
         public Task<UserDTO?> GetById(Guid id);
-        public void UpdateUser(UserUpdateDTO userUpdateDTO);
+        public Task UpdateUser(Guid id, UserUpdateDTO userUpdateDTO);
         public Task DeleteUser(Guid id);
         public Task <Guid> Create(UserCreateDTO userCreateDTO);
 

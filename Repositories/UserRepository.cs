@@ -12,7 +12,8 @@ public class UserRepository : IUserRepository
 {
     private readonly PicpayDataContext _context;
 
-    public UserRepository(PicpayDataContext context) {
+    public UserRepository(PicpayDataContext context)
+    {
         _context = context;
 
     }
@@ -36,19 +37,18 @@ public class UserRepository : IUserRepository
     public void DeleteUser(User user)
     {
         user.DisableUser();
-        _context.Users.Update(user);
-  
+        _context.Update(user);
+
     }
 
     public void UpdateUser(User user)
     {
-        throw new NotImplementedException();
+        _context.Update(user);
     }
 
     public async Task<bool> Exists(User user)
     {
-        var dbuser =  _context.Users.FirstOrDefault(us => us.Document == user.Document || us.Email == user.Email);
+        var dbuser = _context.Users.FirstOrDefault(us => us.Document == user.Document || us.Email == user.Email);
         return dbuser != null;
     }
-
 }
