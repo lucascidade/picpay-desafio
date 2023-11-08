@@ -10,11 +10,12 @@ namespace picpay_desafio.Controllers;
 public class UserController : ControllerBase
 {
     private readonly IUserService _service;
+    private readonly ITransactionService _transactionService;
 
-
-    public UserController(IUserService service)
+    public UserController(IUserService service, ITransactionService transactionService)
     {
         _service = service;
+        _transactionService = transactionService;
     }
     [HttpGet]
     public async Task<ActionResult<List<UserDTO>>> GetAll()
@@ -45,5 +46,14 @@ public class UserController : ControllerBase
     {
         await _service.DeleteUser(id);
     }
+
+
+    [HttpPatch("{payerId}/transaction")]
+    public async Task<Guid> Transfer(Guid payerId, TransferDTO transferDTO)
+    {
+        return await _service.Transfer(payerId, transferDTO);
+    }
+
+
 
 }

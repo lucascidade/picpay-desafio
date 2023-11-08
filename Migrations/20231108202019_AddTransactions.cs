@@ -6,17 +6,34 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace picpay_desafio.Migrations
 {
     /// <inheritdoc />
-    public partial class AddTransaction : Migration
+    public partial class AddTransactions : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
+                    LastName = table.Column<string>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    Wallet = table.Column<decimal>(type: "TEXT", nullable: false),
+                    Document = table.Column<string>(type: "TEXT", nullable: false),
+                    Type = table.Column<int>(type: "INTEGER", nullable: false),
+                    Active = table.Column<bool>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Transactions",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    UserId = table.Column<Guid>(type: "TEXT", nullable: false),
                     PayerId = table.Column<Guid>(type: "TEXT", nullable: false),
                     PayeeId = table.Column<Guid>(type: "TEXT", nullable: false),
                     Value = table.Column<decimal>(type: "TEXT", nullable: false),
@@ -32,8 +49,8 @@ namespace picpay_desafio.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Transactions_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Transactions_Users_PayerId",
+                        column: x => x.PayerId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -45,9 +62,9 @@ namespace picpay_desafio.Migrations
                 column: "PayeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactions_UserId",
+                name: "IX_Transactions_PayerId",
                 table: "Transactions",
-                column: "UserId");
+                column: "PayerId");
         }
 
         /// <inheritdoc />
@@ -55,6 +72,9 @@ namespace picpay_desafio.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Transactions");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

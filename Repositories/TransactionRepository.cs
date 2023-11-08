@@ -22,7 +22,7 @@ namespace picpay_desafio.Repositories
         public async Task<List<Transaction>> GetByUserId(Guid id)
         {
             return await _context.Transactions
-                 .Include(t => t.PayerId)
+                 .Include(t => t.Payer)
                  .Include(t => t.Payee)
                  .Where(t => t.PayeeId == id || t.PayerId == id)
                  .ToListAsync();

@@ -8,11 +8,12 @@ public class Transaction
         PayeeId = payeeId;
         Value = value;
         Date = DateTime.UtcNow;
+        Id = id;
 
     }
 
-    public User User { get; set; }
-    public User Payee { get; set; }
+    public User? Payer { get; set; }
+    public User? Payee { get; set; }
     public Guid Id { get; set; }
     public Guid PayerId { get; set; }
     public Guid PayeeId { get; set; }

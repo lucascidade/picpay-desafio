@@ -11,8 +11,8 @@ using picpay_desafio.Data;
 namespace picpay_desafio.Migrations
 {
     [DbContext(typeof(PicpayDataContext))]
-    [Migration("20231108141540_AddTransaction")]
-    partial class AddTransaction
+    [Migration("20231108202019_AddTransactions")]
+    partial class AddTransactions
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,9 +35,6 @@ namespace picpay_desafio.Migrations
                     b.Property<Guid>("PayerId")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("TEXT");
-
                     b.Property<decimal>("Value")
                         .HasColumnType("TEXT");
 
@@ -45,7 +42,7 @@ namespace picpay_desafio.Migrations
 
                     b.HasIndex("PayeeId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("PayerId");
 
                     b.ToTable("Transactions");
                 });
@@ -94,15 +91,15 @@ namespace picpay_desafio.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("picpay_desafio.Models.User", "User")
+                    b.HasOne("picpay_desafio.Models.User", "Payer")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("PayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Payee");
 
-                    b.Navigation("User");
+                    b.Navigation("Payer");
                 });
 #pragma warning restore 612, 618
         }

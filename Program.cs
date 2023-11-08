@@ -7,6 +7,7 @@ using picpay_desafio.Repositories;
 using picpay_desafio.Services;
 using AutoMapper;
 using picpay_desafio.UnitOfWork;
+using picpay_desafio.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +26,9 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 //transaction
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
 
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -34,7 +37,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<PicpayDataContext>(options =>
 options.UseSqlite("Data Source=./Database/picpay_desafio.db"));
 
+
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
