@@ -11,6 +11,7 @@ namespace picpay_desafio.Interface.Services
         public Task DeleteUser(Guid id);
         public Task <Guid> Create(UserCreateDTO userCreateDTO);
         public Task<Guid> Transfer(Guid payerId, TransferDTO transferDTO);
+        public Task<List<TransactionDTO>> GetTransactions(Guid id);
 
     }
 }

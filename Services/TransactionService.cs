@@ -1,4 +1,5 @@
-﻿using picpay_desafio.DTO;
+﻿using AutoMapper;
+using picpay_desafio.DTO;
 using picpay_desafio.Interface.Repositories;
 using picpay_desafio.Interface.Services;
 
@@ -7,9 +8,11 @@ namespace picpay_desafio.Services
     public class TransactionService : ITransactionService
     {
         private readonly ITransactionRepository _repository;
-        public TransactionService(ITransactionRepository repository)
+        private readonly IMapper _mapper;   
+        public TransactionService(ITransactionRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
         public async Task<Guid> Create(Guid payerId, TransferDTO transferDTO)
         {
@@ -20,9 +23,14 @@ namespace picpay_desafio.Services
                 ));
         }
 
-        public Task<List<TransactionDTO>> GetByUserId(Guid id)
+        public async Task<List<TransactionDTO>> GetByUserId(Guid id)
         {
-            throw new NotImplementedException();
+            var transactions = await _repository.GetByUserId(id);
+
+            return transactions.Select(
+                t => _mapper.Map<TransactionDTO>
+                (t, opt => opt.Items["id"] = id))
+                .ToList();
         }
     }
 }

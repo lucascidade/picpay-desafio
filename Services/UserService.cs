@@ -106,6 +106,8 @@ public class UserService : IUserService
     {
         return await _transactionService.GetByUserId(id);
     }
+
+
     private async Task<User> _getById(Guid id) => await _repository.GetById(id) ??
         throw new Exception("Usuário não encontrado!");
 

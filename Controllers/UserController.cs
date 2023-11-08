@@ -54,6 +54,10 @@ public class UserController : ControllerBase
         return await _service.Transfer(payerId, transferDTO);
     }
 
-
+    [HttpGet("{id}/transactions")]
+    public async Task<List<TransactionDTO>> GetTransactions(Guid id)
+    {
+        return await _service.GetTransactions(id);
+    }
 
 }

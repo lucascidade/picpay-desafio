@@ -40,6 +40,7 @@ public class User
     public void DisableUser() => Active = false;
     public void Pay(decimal value) => Wallet -= value;
     public void Receive(decimal value) => Wallet += value;  
+    public string GetFullName () => $"{FirstName} {LastName}";
 
 }
 
