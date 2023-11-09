@@ -1,0 +1,11 @@
+﻿version: '3'
+services:
+  app:
+    image: picpay:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5172:80"
+    volumes:
+      - ./Data:/app/Database/
